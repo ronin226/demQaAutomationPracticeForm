@@ -42,14 +42,14 @@ public class FormTest {
         $("input#subjectsInput").setValue(subject).pressEnter();
         //$("subjects-auto-complete__input").setValue(subject);
         $(byText("Sports")).click();
-        $("input#uploadPicture").uploadFile(new File("src/HW1.png"));
+        $("input#uploadPicture").uploadFile(new File("src/resourses/HW1.png"));
         $("textarea#currentAddress").setValue(currentAddress);
         $("#state").click();
         $(byText(state)).click();
         $("#city").click();
         $(byText(city)).click();
         $("#submit").click();
-        SelenideElement table = $(".table-dark tbody");
+        //SelenideElement table = $(".table-dark tbody");
         //table.$(byText("Student Name")).parent().shouldHave(text(firstName + " " + lastName));
         $(".table-dark tbody tr:nth-of-type(1) ").shouldHave(text("Student Name")).shouldHave(text(firstName + " " + lastName));
         $(".table-dark tbody tr:nth-of-type(2) ").shouldHave(text("Student Email")).shouldHave(text(userEmail));

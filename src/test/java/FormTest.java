@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import java.io.File;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 
 public class FormTest {
     @BeforeAll
@@ -29,6 +30,7 @@ public class FormTest {
         open("https://demoqa.com/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        //executeJavaScript("arguments[0].remove();", $("footer"));
         $("input#firstName").setValue(firstName);
         $("input#lastName").setValue(lastName);
         $("input#userEmail").setValue(userEmail);
@@ -47,6 +49,8 @@ public class FormTest {
         $("#city").click();
         $(byText(city)).click();
         $("#submit").click();
+        SelenideElement table = $(".table-dark tbody");
+        //table.$(byText("Student Name")).parent().shouldHave(text(firstName + " " + lastName));
         $(".table-dark tbody tr:nth-of-type(1) ").shouldHave(text("Student Name")).shouldHave(text(firstName + " " + lastName));
         $(".table-dark tbody tr:nth-of-type(2) ").shouldHave(text("Student Email")).shouldHave(text(userEmail));
         $(".table-dark tbody tr:nth-of-type(3) ").shouldHave(text("Gender")).shouldHave(text("Female"));

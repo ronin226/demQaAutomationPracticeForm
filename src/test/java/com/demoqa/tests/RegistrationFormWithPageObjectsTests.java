@@ -1,18 +1,12 @@
 package com.demoqa.tests;
-import com.demoqa.pages.RegistrationFormPage;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import java.io.File;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Keys;
 import com.codeborne.selenide.Configuration;
-import com.demoqa.pages.components.ResultsModal;
+import com.demoqa.pages.RegistrationFormPage;
 
 public class RegistrationFormWithPageObjectsTests {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-
 
     @BeforeAll
     static void configure() {
@@ -37,38 +31,36 @@ public class RegistrationFormWithPageObjectsTests {
     String userHobbie = "Sports";
     String pictureName = "HW1.png";
 
+    @Test
+    void demoFormTest() {
 
+        registrationFormPage.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(userEmail)
+                .setGender(gender)
+                .setNumber(userNumber)
+                .setBirthDate(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setSubject(subject)
+                .setHobbie(userHobbie)
+                .setPicture(pictureName)
+                .setAdress(currentAddress)
+                .setState(state)
+                .setCity(city)
+                .submitForm();
 
-        @Test
-        void demoFormTest() {
+        registrationFormPage.checkResultsTableVisible()
+                .checkResult("Student Name", firstName + " " + lastName)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", userNumber)
+                .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                .checkResult("Student Email", userEmail)
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", userHobbie)
+                .checkResult("Picture", pictureName)
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", state + " " + city);
 
-            registrationFormPage.openPage()
-                    .setFirstName(firstName)
-                    .setLastName(lastName)
-                    .setEmail(userEmail)
-                    .setGender(gender)
-                    .setNumber(userNumber)
-                    .setBirthDate(dayOfBirth, monthOfBirth, yearOfBirth)
-                    .setSubject(subject)
-                    .setHobbie(userHobbie)
-                    .setPicture(pictureName)
-                    .setAdress(currentAddress)
-                    .setState(state)
-                    .setCity(city)
-                    .submitForm();
-
-            registrationFormPage.checkResultsTableVisible()
-                    .checkResult("Student Name", firstName + " " + lastName)
-                    .checkResult("Student Email", userEmail)
-                    .checkResult("Gender", gender)
-                    .checkResult("Mobile", userNumber)
-                    .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                    .checkResult("Student Email", userEmail)
-                    .checkResult("Subjects", subject)
-                    .checkResult("Hobbies", userHobbie)
-                    .checkResult("Picture", pictureName)
-                    .checkResult("Address", currentAddress)
-                    .checkResult("State and City", state + " " + city);
-
-        }
     }
+}

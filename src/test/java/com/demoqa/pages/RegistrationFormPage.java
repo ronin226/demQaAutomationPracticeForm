@@ -28,8 +28,6 @@ public class RegistrationFormPage {
             stateInput = $("#state"),
             cityInput = $("#city");
 
-
-
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
@@ -76,7 +74,7 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setSubject(String value) {
-       subjectInput .setValue(value).pressEnter();
+        subjectInput.setValue(value).pressEnter();
 
         return this;
     }
@@ -87,6 +85,7 @@ public class RegistrationFormPage {
 
         return this;
     }
+
     public RegistrationFormPage setHobbie(String value) {
         hobbieInput.$(byText(value)).click();
 
@@ -100,29 +99,34 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setPicture(String value) {
-        pictureInput.uploadFile(new File("src/resourses/"+value));
+        pictureInput.uploadFile(new File("src/resourses/" + value));
 
         return this;
     }
+
     public RegistrationFormPage setAdress(String value) {
         adressInput.setValue(value);
 
         return this;
     }
+
     public RegistrationFormPage setState(String value) {
         stateInput.click();
         $("#stateCity-wrapper").$(byText(value)).click();
 
         return this;
     }
+
     public RegistrationFormPage setCity(String value) {
         cityInput.click();
         $("#stateCity-wrapper").$(byText(value)).click();
 
         return this;
     }
+
     public RegistrationFormPage submitForm() {
-        submitButton.click();;
+        submitButton.click();
+        ;
 
         return this;
     }

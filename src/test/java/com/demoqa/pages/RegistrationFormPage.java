@@ -99,7 +99,7 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setPicture(String value) {
-        pictureInput.uploadFile(new File("src/test/resourses/" + value));
+        pictureInput.uploadFile(new File("src/test/resources/" + value));
 
         return this;
     }

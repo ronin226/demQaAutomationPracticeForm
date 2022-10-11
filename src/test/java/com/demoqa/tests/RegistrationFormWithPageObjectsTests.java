@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.RegistrationFormPage;
+import com.github.javafaker.Faker;
+import utilities.MyUtilities;
 
 public class RegistrationFormWithPageObjectsTests {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
@@ -15,19 +17,19 @@ public class RegistrationFormWithPageObjectsTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
     }
-
-    String firstName = "testman";
-    String lastName = "testmanson";
-    String userEmail = "test@test.test";
-    String gender = "Other";
-    String dayOfBirth = "30";
-    String monthOfBirth = "July";
-    String yearOfBirth = "2008";
+    private Faker faker = new Faker();
+    String firstName = faker.name().firstName();;
+    String lastName = faker.name().lastName();
+    String userEmail = faker.internet().emailAddress();
+    String gender = faker.demographic().sex();;
+    String dayOfBirth = String.valueOf(faker.number().numberBetween(10, 27));;
+    String monthOfBirth = MyUtilities.monthName();
+    String yearOfBirth = String.valueOf(faker.number().numberBetween(1980, 2000));;
     String subject = "Hindi";
     String currentAddress = "Far far away, building 3";
     String state = "Haryana";
     String city = "Panipat";
-    String userNumber = "1234567890";
+    String userNumber =  String.valueOf(faker.phoneNumber().subscriberNumber(10));
     String userHobbie = "Sports";
     String pictureName = "HW1.png";
 

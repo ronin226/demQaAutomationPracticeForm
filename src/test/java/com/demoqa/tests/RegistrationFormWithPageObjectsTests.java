@@ -1,11 +1,14 @@
 package com.demoqa.tests;
 
+import static io.qameta.allure.Allure.step;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.pages.RegistrationFormPage;
 import com.github.javafaker.Faker;
 import utilities.MyUtilities;
+import io.qameta.allure.selenide.AllureSelenide;
 
 public class RegistrationFormWithPageObjectsTests {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
@@ -13,9 +16,10 @@ public class RegistrationFormWithPageObjectsTests {
     @BeforeAll
     static void configure() {
 
-        Configuration.holdBrowserOpen = true;
+//        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     private Faker faker = new Faker();
@@ -40,9 +44,12 @@ public class RegistrationFormWithPageObjectsTests {
 
     @Test
     void demoFormTest() {
+        step("open page", () -> {
+            registrationFormPage.openPage();
+        });
 
-        registrationFormPage.openPage()
-                .setFirstName(firstName)
+        step("fill form", () -> {
+            registrationFormPage.setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(userEmail)
                 .setGender(gender)
@@ -55,7 +62,9 @@ public class RegistrationFormWithPageObjectsTests {
                 .setState(state)
                 .setCity(city)
                 .submitForm();
+        });
 
+        step("check form", () -> {
         registrationFormPage.checkResultsTableVisible()
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Student Email", userEmail)
@@ -68,6 +77,6 @@ public class RegistrationFormWithPageObjectsTests {
                 .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
-
+        });
     }
 }

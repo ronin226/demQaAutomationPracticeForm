@@ -3,10 +3,12 @@ package com.demoqa.tests;
 import static io.qameta.allure.Allure.step;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.pages.RegistrationFormPage;
 import com.github.javafaker.Faker;
+import utilities.Attacments;
 import utilities.MyUtilities;
 import io.qameta.allure.selenide.AllureSelenide;
 
@@ -21,7 +23,12 @@ public class RegistrationFormWithPageObjectsTests {
 //        Configuration.browserSize = "1920x1080";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
     }
+
 
     private Faker faker = new Faker();
     String firstName = faker.name().firstName();
@@ -79,5 +86,6 @@ public class RegistrationFormWithPageObjectsTests {
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
         });
+        Attacments.addVideo();
     }
 }

@@ -52,4 +52,6 @@ public class Attacments {
         attachAsText(
                 "Browser console logs",
                 String.join("\n", Selenide.getWebDriverLogs(BROWSER))
+        );
+    }
 }

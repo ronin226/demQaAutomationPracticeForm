@@ -54,6 +54,7 @@ public class RegistrationFormWithPageObjectsTests {
     void demoFormTest() {
         step("open page", () -> {
             registrationFormPage.openPage();
+            Attacments.screenshotAs("screen1");
         });
 
         step("fill form", () -> {
@@ -70,6 +71,7 @@ public class RegistrationFormWithPageObjectsTests {
                 .setState(state)
                 .setCity(city)
                 .submitForm();
+                Attacments.browserConsoleLogs();
         });
 
         step("check form", () -> {
@@ -85,6 +87,7 @@ public class RegistrationFormWithPageObjectsTests {
                 .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
+                Attacments.pageSource();
         });
         Attacments.addVideo();
     }

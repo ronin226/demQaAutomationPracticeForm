@@ -20,7 +20,8 @@ public class RegistrationFormWithPageObjectsTests {
 
 //        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = System.getProperty("browser")
+        Configuration.browser = System.getProperty("browser");
+        Configuration.browserVersion = System.getProperty("browserVersion");
         Configuration.browserSize = System.getProperty("browserSize");
         Configuration.remote = System.getProperty("remote");
         //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";

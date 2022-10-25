@@ -25,7 +25,7 @@ public class RegistrationFormWithPageObjectsTests {
         Configuration.browserSize = System.getProperty("browserSize");
         if(System.getProperty("remote")!="false"){
             Configuration.remote = System.getProperty("remote");
-        };
+        }
 //        Configuration.browser = ("chrome");
 //        Configuration.browserVersion = ("101");
 //        Configuration.browserSize = ("800x600");

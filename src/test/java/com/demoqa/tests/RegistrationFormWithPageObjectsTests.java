@@ -23,8 +23,13 @@ public class RegistrationFormWithPageObjectsTests {
         Configuration.browser = System.getProperty("browser");
         Configuration.browserVersion = System.getProperty("browserVersion");
         Configuration.browserSize = System.getProperty("browserSize");
-        Configuration.remote = System.getProperty("remote");
-        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        if(System.getProperty("remote")!="false"){
+            Configuration.remote = System.getProperty("remote");
+        };
+//        Configuration.browser = ("chrome");
+//        Configuration.browserVersion = ("101");
+//        Configuration.browserSize = ("800x600");
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);

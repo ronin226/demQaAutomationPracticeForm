@@ -30,6 +30,11 @@ dependencies {
             'org.slf4j:slf4j-simple:2.0.3')
 }
 
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+    }
+
 test {
     useJUnitPlatform()
 }

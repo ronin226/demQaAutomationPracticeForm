@@ -23,7 +23,7 @@ public class RegistrationFormWithPageObjectsTests {
         Configuration.browser = System.getProperty("browser");
         Configuration.browserVersion = System.getProperty("browserVersion");
         Configuration.browserSize = System.getProperty("browserSize");
-        if(System.getProperty("remote")!="false"){
+        if(System.getProperty("remote")!= null ){
             Configuration.remote = System.getProperty("remote");
         }
 //        Configuration.browser = ("chrome");

@@ -21,7 +21,7 @@ public class RegistrationFormWithPageObjectsTests {
 //        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
 //        Configuration.browserSize = "1920x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
@@ -32,16 +32,12 @@ public class RegistrationFormWithPageObjectsTests {
 
     private Faker faker = new Faker();
     String firstName = faker.name().firstName();
-    ;
     String lastName = faker.name().lastName();
     String userEmail = faker.internet().emailAddress();
     String gender = faker.demographic().sex();
-    ;
     String dayOfBirth = String.valueOf(faker.number().numberBetween(10, 27));
-    ;
     String monthOfBirth = MyUtilities.monthName();
     String yearOfBirth = String.valueOf(faker.number().numberBetween(1980, 2000));
-    ;
     String subject = "Hindi";
     String currentAddress = "Far far away, building 3";
     String state = "Haryana";

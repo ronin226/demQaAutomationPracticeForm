@@ -12,24 +12,19 @@ import utilities.Attacments;
 import utilities.MyUtilities;
 import io.qameta.allure.selenide.AllureSelenide;
 
-public class RegistrationFormWithPageObjectsTests {
+public class RegistrationFormWithPageObjectsTests extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @BeforeAll
     static void configure() {
-
-//        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = System.getProperty("browser");
-        Configuration.browserVersion = System.getProperty("browserVersion");
-        Configuration.browserSize = System.getProperty("browserSize");
+        Configuration.browser = System.getProperty("browser","chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion","100");
+        Configuration.browserSize = System.getProperty("browserSize","1024x768");
         if(System.getProperty("remote")!= null ){
             Configuration.remote = System.getProperty("remote");
         }
-//        Configuration.browser = ("chrome");
-//        Configuration.browserVersion = ("101");
-//        Configuration.browserSize = ("800x600");
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
         SelenideLogger.addListener("allure", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
@@ -79,7 +74,7 @@ public class RegistrationFormWithPageObjectsTests {
                 .setState(state)
                 .setCity(city)
                 .submitForm();
-                Attacments.browserConsoleLogs();
+//                Attacments.browserConsoleLogs();
         });
 
         step("check form", () -> {
@@ -95,8 +90,8 @@ public class RegistrationFormWithPageObjectsTests {
                 .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
-                Attacments.pageSource();
+//                Attacments.pageSource();
         });
-        Attacments.addVideo();
+//        Attacments.addVideo();
     }
 }

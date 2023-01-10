@@ -1,36 +1,15 @@
 package com.demoqa.tests;
 
 import static io.qameta.allure.Allure.step;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.pages.RegistrationFormPage;
 import com.github.javafaker.Faker;
-import utilities.Attacments;
 import utilities.MyUtilities;
-import io.qameta.allure.selenide.AllureSelenide;
 
 public class RegistrationFormWithPageObjectsTests extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
-    @BeforeAll
-    static void configure() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser = System.getProperty("browser","chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion","100");
-        Configuration.browserSize = System.getProperty("browserSize","1024x768");
-        if(System.getProperty("remote")!= null ){
-            Configuration.remote = System.getProperty("remote");
-        }
 
-        SelenideLogger.addListener("allure", new AllureSelenide());
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-    }
 
 
     private Faker faker = new Faker();
@@ -57,7 +36,6 @@ public class RegistrationFormWithPageObjectsTests extends TestBase {
     void demoFormTest() {
         step("open page", () -> {
             registrationFormPage.openPage();
-            Attacments.screenshotAs("screen1");
         });
 
         step("fill form", () -> {
@@ -74,7 +52,6 @@ public class RegistrationFormWithPageObjectsTests extends TestBase {
                 .setState(state)
                 .setCity(city)
                 .submitForm();
-//                Attacments.browserConsoleLogs();
         });
 
         step("check form", () -> {
@@ -90,8 +67,6 @@ public class RegistrationFormWithPageObjectsTests extends TestBase {
                 .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
-//                Attacments.pageSource();
         });
-//        Attacments.addVideo();
     }
 }
